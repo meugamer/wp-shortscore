@@ -1,11 +1,12 @@
 <?php
+
 /*
 
 Plugin Name: WP SHORTSCORE
 Description: Displays your SHORTSCORE at the bottom of the post. Uses custom fields: 'shortscore' and 'shortscore_slug'
 Plugin URI:  http://shortscore.org
-Version:     0.0.1
-Author:     MarcDK, Test
+Version:     0.0.2
+Author:     MarcDK
 Author      URI: http://www.marc.tv
 License:    GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
@@ -20,7 +21,7 @@ your option) any later version.
 class WP_SHORTSCORE
 {
 
-    private $version = '0.0.1';
+    private $version = '0.0.2';
     private $shortscore_baseurl = 'https://shortscore.org';
     private $shortscore_css_path = '/wp-content/themes/twentyfifteen-child/shortscore.css';
 
@@ -44,13 +45,13 @@ class WP_SHORTSCORE
 
         if (function_exists('get_post_meta') && get_post_meta($pid, 'shortscore', true) != '' && get_post_meta($pid, 'shortscore_slug', true) != '') {
             $shortscore_slug = get_post_meta($pid, 'shortscore_slug', true);
-            $shortscore      = round(get_post_meta($pid, 'shortscore', true));
+            $shortscore = round(get_post_meta($pid, 'shortscore', true));
 
-            $shortscore_html  = '<div class="type-game">';
+            $shortscore_html = '<div class="type-game">';
             $shortscore_html .= '<div class="hreview">';
             $shortscore_html .= '<div class="rating">';
-            $shortscore_html .= '<a class="score" href="http://shortscore.local/game/' . $shortscore_slug . '/">';
-            $shortscore_html .= '<div class="average shortscore shortscore-' . $shortscore . '">'. $shortscore . '</div>';
+            $shortscore_html .= '<a class="score" href="' . $this->shortscore_baseurl . '/game/' . $shortscore_slug . '/">';
+            $shortscore_html .= '<div class="average shortscore shortscore-' . $shortscore . '">' . $shortscore . '</div>';
             $shortscore_html .= '</a>';
             $shortscore_html .= '</div>';
             $shortscore_html .= '</div>';
@@ -64,12 +65,12 @@ class WP_SHORTSCORE
 
     public function appendShortscore($content)
     {
-        if ( is_single() )
+        if (is_single()) {
             // Add SHORTSCORE to the end of the post.
+            $content = $content . $this->generateShortscore();
 
-        $content = $content . $this->generateShortscore();
-
-        // Returns the content.
+            // Returns the content.
+        }
         return $content;
 
     }
@@ -78,10 +79,8 @@ class WP_SHORTSCORE
     {
         wp_enqueue_style(
             "external-shortscore-styles", $this->shortscore_baseurl . $this->shortscore_css_path, true, $this->version);
-
     }
 }
 
 new WP_SHORTSCORE();
-
 

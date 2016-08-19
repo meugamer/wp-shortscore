@@ -7,7 +7,9 @@ Description: Displays your SHORTSCORE at the bottom of the post. Uses custom fie
 Plugin URI:  http://shortscore.org
 Version:     0.0.2
 Author:     MarcDK, le-phil-de
-Author      URI: http://marc.tv
+Version:     0.0.1
+Author:     MarcDK, le-phil-de
+URI: http://www.marc.tv
 License:    GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 This program is free software; you can redistribute it and/or modify

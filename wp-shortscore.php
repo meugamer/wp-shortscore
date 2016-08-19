@@ -11,6 +11,7 @@ class WP_SHORTSCORE
 
     private $version = '0.0.1';
     private $shortscore_baseurl = 'https://shortscore.org';
+    private $shortscore_css_path = '/wp-content/themes/twentyfifteen-child/shortscore.css';
 
     public function __construct()
     {
@@ -25,21 +26,37 @@ class WP_SHORTSCORE
         add_filter('the_content', array($this, 'appendShortscore'));
     }
 
+    private function generateShortscore()
+    {
+        $shortscore = '';
+        $pid = get_the_ID();
+
+        if (function_exists('get_post_meta') && get_post_meta($pid, 'shortscore', true) != '' && get_post_meta($pid, 'shortscore_slug', true) != '') {
+            $shortscore_slug = get_post_meta($pid, 'shortscore_slug', true);
+            $shortscore      = round(get_post_meta($pid, 'shortscore', true));
+
+            $shortscore_html  = '<div class="type-game">';
+            $shortscore_html .= '<div class="hreview">';
+            $shortscore_html .= '<div class="rating">';
+            $shortscore_html .= '<a class="score" href="http://shortscore.local/game/' . $shortscore_slug . '/">';
+            $shortscore_html .= '<div class="average shortscore shortscore-' . $shortscore . '">'. $shortscore . '</div>';
+            $shortscore_html .= '</a>';
+            $shortscore_html .= '</div>';
+            $shortscore_html .= '</div>';
+            $shortscore_html .= '</div>';
+
+            $shortscore = $shortscore_html;
+        }
+
+        return $shortscore;
+    }
+
     public function appendShortscore($content)
     {
         if ( is_single() )
             // Add SHORTSCORE to the end of the post.
 
-            $shortscore_slug = 'empyrion-galactic-survival';
-
-            $shortscore_html  = '<div class="rating">';
-            $shortscore_html .= '<a class="score" href="http://shortscore.local/game/' . $shortscore_slug . '/">';
-            $shortscore_html .= '<div class="average shortscore shortscore-0">?</div>';
-            $shortscore_html .= '</a>';
-            $shortscore_html .= '</div>';
-
-            
-            $content = $content . $shortscore_html; 
+        $content = $content . $this->generateShortscore();
 
         // Returns the content.
         return $content;
@@ -49,7 +66,7 @@ class WP_SHORTSCORE
     public function enqueScripts()
     {
         wp_enqueue_style(
-            "jquery.marctv-galleria-style", WP_PLUGIN_URL . "/marctv-galleria/galleria/themes/classic/galleria.classic.css", false, $this->version);
+            "external-shortscore-styles", $this->shortscore_baseurl . $this->shortscore_css_path, true, $this->version);
 
     }
 }

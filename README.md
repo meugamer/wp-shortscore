@@ -1,5 +1,5 @@
 # wp-shortscore
-Displays your shortscores in your blog.
+This wordpress plugin displays scores from SHORTSCORE.org in your blog!
 
 ## Description
 

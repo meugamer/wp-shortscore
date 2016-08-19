@@ -6,8 +6,8 @@ Plugin Name: WP SHORTSCORE
 Description: Displays your SHORTSCORE at the bottom of the post. Uses custom fields: 'shortscore' and 'shortscore_slug'
 Plugin URI:  http://shortscore.org
 Version:     0.0.2
-Author:     MarcDK
-Author      URI: http://www.marc.tv
+Author:     MarcDK, le-phil-de
+Author      URI: http://marc.tv
 License:    GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 
 This program is free software; you can redistribute it and/or modify
@@ -83,4 +83,3 @@ class WP_SHORTSCORE
 }
 
 new WP_SHORTSCORE();
-

@@ -86,13 +86,13 @@ class WP_SHORTSCORE
             }
 
 
-            $this->savePostMeta($post_id, 'shortscore', $result->shortscore->userscore);
-            $this->savePostMeta($post_id, 'shortscore_url', $result->game->url);
-            $this->savePostMeta($post_id, 'shortscore_summary', $result->shortscore->summary);
-            $this->savePostMeta($post_id, 'shortscore_title', $result->game->title);
-            $this->savePostMeta($post_id, 'shortscore_author', $result->shortscore->author);
-            $this->savePostMeta($post_id, 'shortscore_date', $result->shortscore->date);
-            $this->savePostMeta($post_id, 'shortscore_count', $result->game->count);
+            $this->savePostMeta($post_id, '_shortscore', $result->shortscore->userscore);
+            $this->savePostMeta($post_id, '_shortscore_url', $result->game->url);
+            $this->savePostMeta($post_id, '_shortscore_summary', $result->shortscore->summary);
+            $this->savePostMeta($post_id, '_shortscore_title', $result->game->title);
+            $this->savePostMeta($post_id, '_shortscore_author', $result->shortscore->author);
+            $this->savePostMeta($post_id, '_shortscore_date', $result->shortscore->date);
+            $this->savePostMeta($post_id, '_shortscore_count', $result->game->count);
 
         }
 
@@ -106,21 +106,21 @@ class WP_SHORTSCORE
 
         if (
             function_exists('get_post_meta') &&
-            get_post_meta($post_id, 'shortscore', true) != '' &&
-            get_post_meta($post_id, 'shortscore_url', true) != '' &&
-            get_post_meta($post_id, 'shortscore_summary', true) != '' &&
-            get_post_meta($post_id, 'shortscore_author', true) != '' &&
-            get_post_meta($post_id, 'shortscore_date', true) != '' &&
-            get_post_meta($post_id, 'shortscore_count', true) != '' &&
-            get_post_meta($post_id, 'shortscore_title', true) != ''
+            get_post_meta($post_id, '_shortscore', true) != '' &&
+            get_post_meta($post_id, '_shortscore_url', true) != '' &&
+            get_post_meta($post_id, '_shortscore_summary', true) != '' &&
+            get_post_meta($post_id, '_shortscore_author', true) != '' &&
+            get_post_meta($post_id, '_shortscore_date', true) != '' &&
+            get_post_meta($post_id, '_shortscore_count', true) != '' &&
+            get_post_meta($post_id, '_shortscore_title', true) != ''
         ) {
-            $shortscore_url = get_post_meta($post_id, 'shortscore_url', true);
-            $shortscore = round(get_post_meta($post_id, 'shortscore', true));
-            $shortscore_summary = get_post_meta($post_id, 'shortscore_summary', true);
-            $shortscore_author = get_post_meta($post_id, 'shortscore_author', true);
-            $shortscore_title = get_post_meta($post_id, 'shortscore_title', true);
-            $shortscore_date = get_post_meta($post_id, 'shortscore_date', true);
-            $shortscore_count = get_post_meta($post_id, 'shortscore_count', true);
+            $shortscore_url =       get_post_meta($post_id, '_shortscore_url', true);
+            $shortscore =     round(get_post_meta($post_id, '_shortscore', true));
+            $shortscore_summary =   get_post_meta($post_id, '_shortscore_summary', true);
+            $shortscore_author =    get_post_meta($post_id, '_shortscore_author', true);
+            $shortscore_title =     get_post_meta($post_id, '_shortscore_title', true);
+            $shortscore_date =      get_post_meta($post_id, '_shortscore_date', true);
+            $shortscore_count =     get_post_meta($post_id, '_shortscore_count', true);
 
             $shortscore_html = '<div class="type-game">';
             $shortscore_html .= '<div class="hreview shortscore-hreview">';
@@ -176,9 +176,16 @@ class WP_SHORTSCORE
      * Outputs the content of the meta box
      */
     function shortscore_meta_callback( $post ) {
-        echo 'This is a meta box';
-    }
 
+        wp_nonce_field( basename( __FILE__ ), 'shortscore_nonce' );
+        $shortscore_stored_meta = get_post_meta( $post->ID );
+        ?>
+        <p>
+            <label for="meta-text" class="prfx-row-title"><?php _e( 'Example Text Input', 'prfx-textdomain' )?></label>
+            <input type="text" name="meta-text" id="meta-text" value="<?php if ( isset ( $shortscore_stored_meta['meta-text'] ) ) echo $shortscore_stored_meta['meta-text'][0]; ?>" />
+        </p>
+        <?php
+    }
 }
 
 new WP_SHORTSCORE();

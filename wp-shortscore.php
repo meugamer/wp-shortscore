@@ -27,6 +27,7 @@ class WP_SHORTSCORE
 
         if (is_admin()) {
             add_action('save_post', array($this, 'getShortscore'));
+            add_action('add_meta_boxes', array($this,'shortscore_custom_meta'));
         }
     }
 
@@ -120,7 +121,7 @@ class WP_SHORTSCORE
             $shortscore_title = get_post_meta($post_id, 'shortscore_title', true);
             $shortscore_date = get_post_meta($post_id, 'shortscore_date', true);
             $shortscore_count = get_post_meta($post_id, 'shortscore_count', true);
-            
+
             $shortscore_html = '<div class="type-game">';
             $shortscore_html .= '<div class="hreview shortscore-hreview">';
             $shortscore_html .= '<div class="rating">';
@@ -163,6 +164,21 @@ class WP_SHORTSCORE
         wp_enqueue_style(
             "shortscore-base", WP_PLUGIN_URL . '/wp-shortscore/shortscore-base.css', true, $this->version);
     }
+
+    /**
+     * Adds a meta box to the post editing screen
+     */
+    public function shortscore_custom_meta() {
+        add_meta_box( 'shortscore_meta', __( __('Add SHORTSCORE','wp-shortscore'), 'prfx-textdomain' ), array($this,'shortscore_meta_callback'), 'post' );
+    }
+
+    /**
+     * Outputs the content of the meta box
+     */
+    function shortscore_meta_callback( $post ) {
+        echo 'This is a meta box';
+    }
+
 }
 
 new WP_SHORTSCORE();

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP SHORTSCORE\n"
-"POT-Creation-Date: 2016-08-20 22:35+0200\n"
-"PO-Revision-Date: 2016-08-20 22:35+0200\n"
+"POT-Creation-Date: 2016-08-20 22:57+0200\n"
+"PO-Revision-Date: 2016-08-20 22:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -20,30 +20,34 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: wp-shortscore.php:140
+#: wp-shortscore.php:134
 #, php-format
 msgid "%s"
 msgstr ""
 
-#: wp-shortscore.php:140
+#: wp-shortscore.php:134
 #, php-format
 msgid "one user review"
 msgid_plural "%s user reviews"
 msgstr[0] "Eine Bewertung"
 msgstr[1] "%s Bewertungen"
 
-#: wp-shortscore.php:140
+#: wp-shortscore.php:134
 msgid "on"
 msgstr "auf"
 
-#: wp-shortscore.php:140
+#: wp-shortscore.php:134
 msgid "to"
 msgstr "zu"
 
-#: wp-shortscore.php:142
+#: wp-shortscore.php:136
 #, php-format
 msgid "out of %s."
 msgstr "von %s"
+
+#: wp-shortscore.php:172
+msgid "Add SHORTSCORE"
+msgstr "SHORTSCORE hinzufügen"
 
 #. Plugin Name of the plugin/theme
 msgid "WP SHORTSCORE"

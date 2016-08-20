@@ -1,12 +1,14 @@
 <?php
 /*
 Plugin Name: WP SHORTSCORE
-Description: Displays your SHORTSCORE at the bottom of the post. Uses custom fields: 'shortscore' and 'shortscore_slug'
+Description: Displays your SHORTSCORE at the bottom of the post. Add a custom field `shortscore_id` with
+a shortscore.org ID (e.g. 374)
+
 Plugin URI:  http://shortscore.org
 Version:     1.0
 Author:      MarcDK, le-phil.de
-Author URI:         http://marc.tv
-License URI:     GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
+Author URI:  http://marc.tv
+License URI: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
 class WP_SHORTSCORE

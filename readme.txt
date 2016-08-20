@@ -18,6 +18,8 @@ Displays a shortscore rating at the bottom of a post. Complete with the hreview 
 == Changelog ==
 
 
-= 1.7.1 =
+= 1.0
+
+inital version
 
 

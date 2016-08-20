@@ -1,0 +1,39 @@
+.shortscore-hreview {
+  overflow: hidden;
+  padding: 0;
+
+  .rating {
+    float: left;
+    font-size: 300%;
+    color: #EEE;
+    line-height: 1.2;
+    padding: 0;
+  }
+
+  .link {
+    float: right;
+    width: 75%;
+  }
+
+  .text {
+    border-top: 6px solid #108D4F;
+    float: right;
+    width: 75%;
+    padding-top: 0.5em;
+    padding-left: 0.5em;
+    margin-bottom: 1em;
+
+    .item .fn {
+      font-weight: 700;
+    }
+  }
+
+  .summary {
+    font-size: 110%;
+  }
+
+  .outof,
+  .dtreviewed {
+    display: none;
+  }
+}

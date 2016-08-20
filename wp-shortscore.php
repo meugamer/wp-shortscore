@@ -195,7 +195,7 @@ class WP_SHORTSCORE
             <label for="_shortscore_id" class="prfx-row-title"><?php _e( 'Please input SHORTSCORE ID', 'wp-shortscore' )?></label>
             <input type="text" name="_shortscore_id" id="_shortscore_id" value="<?php if ( isset ( $shortscore_stored_meta['_shortscore_id'] ) ) echo $shortscore_stored_meta['_shortscore_id'][0]; ?>" />
         </p>
-        <p><?php _e( 'You can find the SHORTSCORE ID next to your submitted shortscore on', 'wp-shortscore' )?> <a href="http://shortscore.org">SHORTSCORE.org</a></p>
+        <p><?php _e( 'You can find the SHORTSCORE ID next to your submitted SHORTSCORE on', 'wp-shortscore' )?> <a href="http://shortscore.org">SHORTSCORE.org</a></p>
         <?php
     }
 

@@ -120,14 +120,7 @@ class WP_SHORTSCORE
             $shortscore_title = get_post_meta($post_id, 'shortscore_title', true);
             $shortscore_date = get_post_meta($post_id, 'shortscore_date', true);
             $shortscore_count = get_post_meta($post_id, 'shortscore_count', true);
-
-
-
-
-
-            $shortscore_link =
-
-
+            
             $shortscore_html = '<div class="type-game">';
             $shortscore_html .= '<div class="hreview shortscore-hreview">';
             $shortscore_html .= '<div class="rating">';

@@ -120,7 +120,7 @@ class WP_SHORTSCORE
             $shortscore_count = get_post_meta($post_id, 'shortscore_count', true);
 
 
-            $shortscore_link = '' . sprintf(__('out of %s based on %s', 'wp-shortscore') . '</strong> '. __('on','wp-shortscore') . ' SHORTSCORE.org</a>',
+            $shortscore_link = '' . sprintf(__('out of %s. There are %s', 'wp-shortscore') . '</strong> '. __('on','wp-shortscore') . ' SHORTSCORE.org</a>',
                     '<span class="best">10</span>',
                     '<a href="' . $shortscore_url . '#comments"><strong><span class="votes">' . sprintf(_n('one user review', '%s user reviews', $shortscore_count, 'wp-shortscore'), $shortscore_count) . '</span>');
 

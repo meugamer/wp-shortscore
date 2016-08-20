@@ -45,13 +45,24 @@ class WP_SHORTSCORE
 
     public function getShortscore($post_id)
     {
-        if (wp_is_post_revision($post_id))
+        // Checks save status
+        $is_autosave = wp_is_post_autosave( $post_id );
+        $is_revision = wp_is_post_revision( $post_id );
+        $is_valid_nonce = ( isset( $_POST[ 'shortscore_nonce' ] ) && wp_verify_nonce( $_POST[ 'shortscore_nonce' ], basename( __FILE__ ) ) ) ? 'true' : 'false';
+
+        // Exits script depending on save status
+        if ( $is_autosave || $is_revision || !$is_valid_nonce ) {
             return;
+        }
 
+        // Checks for input and sanitizes/saves if needed
+        if( isset( $_POST[ '_shortscore_id' ] ) ) {
+            update_post_meta( $post_id, '_shortscore_id', sanitize_text_field( $_POST[ '_shortscore_id' ] ) );
+        }
 
-        if (function_exists('get_post_meta') && get_post_meta($post_id, 'shortscore_id', true) != '') {
+        if (function_exists('get_post_meta') && get_post_meta($post_id, '_shortscore_id', true) != '') {
 
-            $shortscore_id = get_post_meta($post_id, 'shortscore_id', true);
+            $shortscore_id = get_post_meta($post_id, '_shortscore_id', true);
 
             $json = file_get_contents($this->shortscore_baseurl . $this->shortscore_endpoint . $shortscore_id);
             $result = json_decode($json);
@@ -175,17 +186,19 @@ class WP_SHORTSCORE
     /**
      * Outputs the content of the meta box
      */
-    function shortscore_meta_callback( $post ) {
+    public function shortscore_meta_callback( $post ) {
 
         wp_nonce_field( basename( __FILE__ ), 'shortscore_nonce' );
         $shortscore_stored_meta = get_post_meta( $post->ID );
         ?>
         <p>
-            <label for="meta-text" class="prfx-row-title"><?php _e( 'Example Text Input', 'prfx-textdomain' )?></label>
-            <input type="text" name="meta-text" id="meta-text" value="<?php if ( isset ( $shortscore_stored_meta['meta-text'] ) ) echo $shortscore_stored_meta['meta-text'][0]; ?>" />
+            <label for="_shortscore_id" class="prfx-row-title"><?php _e( 'Please input SHORTSCORE ID', 'wp-shortscore' )?></label>
+            <input type="text" name="_shortscore_id" id="_shortscore_id" value="<?php if ( isset ( $shortscore_stored_meta['_shortscore_id'] ) ) echo $shortscore_stored_meta['_shortscore_id'][0]; ?>" />
         </p>
+        <p><?php _e( 'You can find the SHORTSCORE ID next to your submitted shortscore on', 'wp-shortscore' )?> <a href="http://shortscore.org">SHORTSCORE.org</a></p>
         <?php
     }
+
 }
 
 new WP_SHORTSCORE();

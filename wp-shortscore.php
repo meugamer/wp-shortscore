@@ -126,16 +126,16 @@ class WP_SHORTSCORE
 
 
             $shortscore_html = '<div class="type-game">';
-            $shortscore_html .= '<p class="hreview">';
-            $shortscore_html .= '<span class="text"><span class="item"> <a class="score" href="' . $shortscore_url . '"><strong class="fn">' . $shortscore_title . '</strong></a>: </span>';
-            $shortscore_html .= '<span class="summary">' . $shortscore_summary . '</span><span class="reviewer vcard"> – <span class="fn">' . $shortscore_author . '</span></span>';
+            $shortscore_html .= '<div class="hreview">';
+            $shortscore_html .= '<div class="text"><span class="item"> <a class="score" href="' . $shortscore_url . '"><strong class="fn">' . $shortscore_title . '</strong></a>: </span>';
+            $shortscore_html .= '<span class="summary">' . $shortscore_summary . '</span><span class="reviewer vcard"> – <span class="fn">' . $shortscore_author . '</span></div>';
             $shortscore_html .= '<div class="rating">';
-            $shortscore_html .= '<a class="score" href="' . $shortscore_url . '">';
+            $shortscore_html .= '';
             $shortscore_html .= '<div class="average shortscore shortscore-' . $shortscore . '">' . $shortscore . '</div>';
-            $shortscore_html .= '</a>';
+            $shortscore_html .= '';
             $shortscore_html .= '</div>';
             $shortscore_html .= '<span class="dtreviewed">' . $shortscore_date . '</span>';
-            $shortscore_html .= '</p>';
+            $shortscore_html .= '</div>';
             $shortscore_html .= '<p>' . $shortscore_link .'</p>';
             $shortscore_html .= '</div>';
 

@@ -59,8 +59,6 @@ class WP_SHORTSCORE
 
             $shortscore_id = get_post_meta($post_id, 'shortscore_id', true);
 
-
-
             $json = file_get_contents($this->shortscore_baseurl . $this->shortscore_endpoint . $shortscore_id);
             $result = json_decode($json);
 
@@ -73,8 +71,28 @@ class WP_SHORTSCORE
                 return;
             }
 
+            if (!isset($result->shortscore->userscore)) {
+                return;
+            }
+
+            if (!isset($result->shortscore->summary)) {
+                return;
+            }
+
+            if (!isset($result->game->title)) {
+                return;
+            }
+
+            if (!isset($result->shortscore->date)) {
+                return;
+            }
+
             $this->savePostMeta($post_id, 'shortscore', $result->shortscore->userscore);
             $this->savePostMeta($post_id, 'shortscore_url', $result->game->url);
+            $this->savePostMeta($post_id, 'shortscore_summary', $result->shortscore->summary);
+            $this->savePostMeta($post_id, 'shortscore_title', $result->game->title);
+            $this->savePostMeta($post_id, 'shortscore_author', $result->shortscore->author);
+            $this->savePostMeta($post_id, 'shortscore_date', $result->shortscore->date);
 
         }
 
@@ -86,18 +104,33 @@ class WP_SHORTSCORE
         $shortscore = '';
         $post_id = get_the_ID();
 
-        if (function_exists('get_post_meta') && get_post_meta($post_id, 'shortscore', true) != '' && get_post_meta($post_id, 'shortscore_url', true) != '') {
+        if (
+            function_exists('get_post_meta') &&
+            get_post_meta($post_id, 'shortscore', true) != '' &&
+            get_post_meta($post_id, 'shortscore_url', true) != '' &&
+            get_post_meta($post_id, 'shortscore_summary', true) != '' &&
+            get_post_meta($post_id, 'shortscore_author', true) != '' &&
+            get_post_meta($post_id, 'shortscore_date', true) != '' &&
+            get_post_meta($post_id, 'shortscore_title', true) != ''
+        ) {
             $shortscore_url = get_post_meta($post_id, 'shortscore_url', true);
             $shortscore = round(get_post_meta($post_id, 'shortscore', true));
+            $shortscore_summary = get_post_meta($post_id, 'shortscore_summary', true);
+            $shortscore_author = get_post_meta($post_id, 'shortscore_author', true);
+            $shortscore_title = get_post_meta($post_id, 'shortscore_title', true);
+            $shortscore_date = get_post_meta($post_id, 'shortscore_date', true);
 
             $shortscore_html = '<div class="type-game">';
-            $shortscore_html .= '<div class="hreview">';
+            $shortscore_html .= '<p class="hreview">';
+            $shortscore_html .= '<span class="text"><span class="item"> <strong class="fn">' . $shortscore_title . '</strong>: </span>';
+            $shortscore_html .= '<span class="summary">' . $shortscore_summary.  '</span><span class="reviewer vcard"> – <span class="fn">' . $shortscore_author . '</span></span>';
             $shortscore_html .= '<div class="rating">';
             $shortscore_html .= '<a class="score" href="' . $shortscore_url . '">';
             $shortscore_html .= '<div class="average shortscore shortscore-' . $shortscore . '">' . $shortscore . '</div>';
             $shortscore_html .= '</a>';
             $shortscore_html .= '</div>';
-            $shortscore_html .= '</div>';
+            $shortscore_html .= '<span class="dtreviewed">' . $shortscore_date . '</span>';
+            $shortscore_html .= '</p>';
             $shortscore_html .= '</div>';
 
             $shortscore = $shortscore_html;
@@ -105,6 +138,10 @@ class WP_SHORTSCORE
 
         return $shortscore;
     }
+
+
+
+
 
     public function appendShortscore($content)
     {

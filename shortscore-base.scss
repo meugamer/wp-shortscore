@@ -1,39 +1,70 @@
-.shortscore-hreview {
-  overflow: hidden;
-  padding: 0;
+$shortscore-color: #108D4F;
+$duration: .5s;
 
-  .rating {
-    float: left;
-    font-size: 300%;
-    color: #EEE;
-    line-height: 1.2;
+.type-game {
+  .shortscore-hreview {
+    overflow: hidden;
     padding: 0;
-  }
-
-  .link {
-    float: right;
-    width: 75%;
-  }
-
-  .text {
-    border-top: 6px solid #108D4F;
-    float: right;
-    width: 75%;
-    padding-top: 0.5em;
-    padding-left: 0.5em;
     margin-bottom: 1em;
 
-    .item .fn {
-      font-weight: 700;
+    .rating {
+      float: right;
+      font-size: 300%;
+      color: #EEE;
+      line-height: 1.2;
+      padding: 0;
+
+      a {
+        display: block;
+        border-bottom: none;
+        color: #fff;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+    }
+
+    .link {
+      float: left;
+      width: 75%;
+    }
+
+    .text {
+      float: left;
+      width: 70%;
+      padding: 1em;
+      margin-bottom: 1em;
+      color: #fff;
+      background-color: $shortscore-color;
+
+      a {
+        color: #fff;
+        border-bottom: none;
+      }
+
+      .item .fn {
+        font-weight: 700;
+      }
+    }
+
+    .summary {
+      font-size: 110%;
+    }
+
+    .outof,
+    .dtreviewed {
+      display: none;
     }
   }
 
-  .summary {
-    font-size: 110%;
-  }
+  .shortscore-title {
+    color: $shortscore-color;
+    text-align: center;
+    margin-bottom: 1em;
 
-  .outof,
-  .dtreviewed {
-    display: none;
+    @media screen and (min-width: 75em) {
+      text-align: left;
+    }
   }
 }

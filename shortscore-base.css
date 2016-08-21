@@ -1,35 +1,43 @@
-.shortscore-hreview {
+.type-game .shortscore-hreview {
   overflow: hidden;
-  padding: 0; }
-  .shortscore-hreview .rating {
-    float: left;
+  padding: 0;
+  margin-bottom: 1em; }
+  .type-game .shortscore-hreview .rating {
+    float: right;
     font-size: 300%;
     color: #EEE;
     line-height: 1.2;
     padding: 0; }
-  .shortscore-hreview .link {
-    float: right;
-    width: 75%;
-  color: #108D4F; }
-  .shortscore-hreview .text {
-    border-top: 6px solid #108D4F;
-    float: right;
-    width: 75%;
-    padding-top: 0.5em;
-    padding-left: 0.5em;
-    margin-bottom: 1em; }
-    .shortscore-hreview .text .item .fn {
+    .type-game .shortscore-hreview .rating a {
+      display: block;
+      border-bottom: none;
+      color: #fff; }
+      .type-game .shortscore-hreview .rating a:hover {
+        color: #fff; }
+  .type-game .shortscore-hreview .link {
+    float: left;
+    width: 75%; }
+  .type-game .shortscore-hreview .text {
+    float: left;
+    width: 70%;
+    padding: 1em;
+    margin-bottom: 1em;
+    color: #fff;
+    background-color: #108D4F; }
+    .type-game .shortscore-hreview .text a {
+      color: #fff;
+      border-bottom: none; }
+    .type-game .shortscore-hreview .text .item .fn {
       font-weight: 700; }
-  .shortscore-hreview .summary {
+  .type-game .shortscore-hreview .summary {
     font-size: 110%; }
-  .shortscore-hreview .outof,
-  .shortscore-hreview .dtreviewed {
+  .type-game .shortscore-hreview .outof,
+  .type-game .shortscore-hreview .dtreviewed {
     display: none; }
-
-  .type-game-title-h3{color: #108D4F; text-align: center;}
-
-@media screen and (min-width: 75em){
-
-  .type-game-title-h3{color: #108D4F; text-align: left;}
-
-}
+.type-game .shortscore-title {
+  color: #108D4F;
+  text-align: center;
+  margin-bottom: 1em; }
+  @media screen and (min-width: 75em) {
+    .type-game .shortscore-title {
+      text-align: left; } }

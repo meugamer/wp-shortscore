@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP SHORTSCORE\n"
-"POT-Creation-Date: 2016-08-21 10:56+0200\n"
-"PO-Revision-Date: 2016-08-21 10:57+0200\n"
+"POT-Creation-Date: 2016-08-21 11:05+0200\n"
+"PO-Revision-Date: 2016-08-21 11:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -20,57 +20,61 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: wp-shortscore.php:163
+#: wp-shortscore.php:156
+msgid "Rating on SHORTSCORE.org"
+msgstr "Bewertung auf SHORTSCORE.org"
+
+#: wp-shortscore.php:164
 #, php-format
 msgid "%s"
 msgstr ""
 
-#: wp-shortscore.php:163
+#: wp-shortscore.php:164
 #, php-format
 msgid "one user review"
 msgid_plural "%s user reviews"
 msgstr[0] "Eine Bewertung"
 msgstr[1] "%s Bewertungen"
 
-#: wp-shortscore.php:163
+#: wp-shortscore.php:164
 msgid "on"
 msgstr "auf"
 
-#: wp-shortscore.php:163
+#: wp-shortscore.php:164
 msgid "to"
 msgstr "zu"
 
-#: wp-shortscore.php:165
+#: wp-shortscore.php:166
 #, php-format
 msgid "out of %s."
 msgstr "von %s"
 
-#: wp-shortscore.php:202
+#: wp-shortscore.php:203
 msgid "Add SHORTSCORE"
 msgstr "SHORTSCORE hinzufügen"
 
-#: wp-shortscore.php:216
+#: wp-shortscore.php:217
 msgid "Please input SHORTSCORE ID"
 msgstr "Bitte gib deine SHORTSCORE ID ein"
 
-#: wp-shortscore.php:220
+#: wp-shortscore.php:221
 msgid "You can find the SHORTSCORE ID next to your submitted SHORTSCORE on"
 msgstr ""
 "Du findest die SHORTSCORE ID bei deinem zuletzt abgegebenen SHORTSCORE auf"
 
-#: wp-shortscore.php:237
+#: wp-shortscore.php:238
 msgid "This SHORTSCORE ID does not exist"
 msgstr "Diese SHORTCORE ID existiert nicht."
 
-#: wp-shortscore.php:240
+#: wp-shortscore.php:241
 msgid "An error ocurred when saving the SHORTSCORE."
 msgstr "Beim Speichern der SHORTSCORE ID ist ein Fehler aufgetreten. "
 
-#: wp-shortscore.php:255
+#: wp-shortscore.php:256
 msgid "Valid SHORTSCORE ID found and saved to post successfully"
-msgstr "Valide SPORTSCORE ID gefunden und erfolgreich am Beitrag gespeichert. "
+msgstr "Valide SHORTSCORE ID gefunden und erfolgreich am Beitrag gespeichert. "
 
-#: wp-shortscore.php:258
+#: wp-shortscore.php:259
 msgid "SHORTSCORE ID saved"
 msgstr "SHORTSCORE ID gespeichert "
 
@@ -95,6 +99,9 @@ msgstr ""
 #. Author URI of the plugin/theme
 msgid "http://marc.tv"
 msgstr ""
+
+#~ msgid "Rating on shortscore.org"
+#~ msgstr "Bewertung auf SPORTSCORE.org"
 
 #~ msgid "You can find the SHORTSCORE ID next to your submitted shortscore on"
 #~ msgstr ""

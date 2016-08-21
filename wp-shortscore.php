@@ -26,6 +26,7 @@ class WP_SHORTSCORE
         $this->frontendInit();
 
         if (is_admin()) {
+
             add_action('save_post', array($this, 'getShortscore'));
             add_action('add_meta_boxes', array($this,'shortscore_custom_meta'));
         }
@@ -72,11 +73,19 @@ class WP_SHORTSCORE
                 return;
             }
 
+            if (!isset($result->game->url)) {
+                return;
+            }
+
             if (!isset($result->shortscore->userscore)) {
                 return;
             }
 
             if (!isset($result->shortscore->userscore)) {
+                return;
+            }
+
+            if (!isset($result->shortscore->author)) {
                 return;
             }
 
@@ -96,19 +105,13 @@ class WP_SHORTSCORE
                 return;
             }
 
-
-            $this->savePostMeta($post_id, '_shortscore', $result->shortscore->userscore);
-            $this->savePostMeta($post_id, '_shortscore_url', $result->game->url);
-            $this->savePostMeta($post_id, '_shortscore_summary', $result->shortscore->summary);
-            $this->savePostMeta($post_id, '_shortscore_title', $result->game->title);
-            $this->savePostMeta($post_id, '_shortscore_author', $result->shortscore->author);
-            $this->savePostMeta($post_id, '_shortscore_date', $result->shortscore->date);
-            $this->savePostMeta($post_id, '_shortscore_count', $result->game->count);
+            $this->savePostMeta($post_id, '_shortscore_result', $result);
 
         }
 
         return;
     }
+
 
     private function displayShortscore()
     {
@@ -116,22 +119,17 @@ class WP_SHORTSCORE
         $post_id = get_the_ID();
 
         if (
-            function_exists('get_post_meta') &&
-            get_post_meta($post_id, '_shortscore', true) != '' &&
-            get_post_meta($post_id, '_shortscore_url', true) != '' &&
-            get_post_meta($post_id, '_shortscore_summary', true) != '' &&
-            get_post_meta($post_id, '_shortscore_author', true) != '' &&
-            get_post_meta($post_id, '_shortscore_date', true) != '' &&
-            get_post_meta($post_id, '_shortscore_count', true) != '' &&
-            get_post_meta($post_id, '_shortscore_title', true) != ''
-        ) {
-            $shortscore_url =       get_post_meta($post_id, '_shortscore_url', true);
-            $shortscore =     round(get_post_meta($post_id, '_shortscore', true));
-            $shortscore_summary =   get_post_meta($post_id, '_shortscore_summary', true);
-            $shortscore_author =    get_post_meta($post_id, '_shortscore_author', true);
-            $shortscore_title =     get_post_meta($post_id, '_shortscore_title', true);
-            $shortscore_date =      get_post_meta($post_id, '_shortscore_date', true);
-            $shortscore_count =     get_post_meta($post_id, '_shortscore_count', true);
+            function_exists('get_post_meta') && get_post_meta($post_id, '_shortscore_result', true) != '' ) {
+
+            $result = get_post_meta($post_id, '_shortscore_result', true);
+
+            $shortscore_url =       $result->game->url;
+            $shortscore =     round($result->shortscore->userscore);
+            $shortscore_summary =   $result->shortscore->summary;
+            $shortscore_author =    $result->shortscore->author;
+            $shortscore_title =     $result->game->title;
+            $shortscore_date =      $result->shortscore->date;
+            $shortscore_count =     $result->game->count;
 
             $shortscore_html = '<div class="type-game">';
             $shortscore_html .= '<div class="hreview shortscore-hreview">';

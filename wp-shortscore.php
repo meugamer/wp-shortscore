@@ -159,13 +159,16 @@ class WP_SHORTSCORE
             $shortscore_html = '<div class="type-game">';
             $shortscore_html .= '<h3 class="shortscore-title">' . __('Rating on SHORTSCORE.org','wp-shortscore') . '</h3>';
             $shortscore_html .= '<div class="hreview shortscore-hreview">';
-            $shortscore_html .= '<div class="rating">';
-            $shortscore_html .= '<a href="' . $shortscore_comment_url . '" class="shortscore shortscore-' . $shortscore . '">' . $shortscore . '</a>';
-            $shortscore_html .= '</div>';
+
             $shortscore_html .= '<div class="text">';
             $shortscore_html .= '<span class="item"> <a class="score" href="' . $shortscore_url . '"><strong class="fn">' . $shortscore_title . '</strong></a>: </span>';
             $shortscore_html .= '<span class="summary">' . $shortscore_summary . '</span><span class="reviewer vcard"> – <span class="fn">' . $shortscore_author . '</span></span>';
             $shortscore_html .= '</div>';
+
+            $shortscore_html .= '<div class="rating">';
+            $shortscore_html .= '<a href="' . $shortscore_comment_url . '" class="shortscore shortscore-' . $shortscore . '">' . $shortscore . '</a>';
+            $shortscore_html .= '</div>';
+
             $shortscore_html .= '<div class="link"><a href="' . $shortscore_url . '">' . sprintf(__('%s', 'wp-shortscore'), '<span class="votes">' . sprintf(_n('one user review', '%s user reviews', $shortscore_count, 'wp-shortscore'), $shortscore_count) . '</span> ') . __('on', 'wp-shortscore') . ' SHORTSCORE.org ' . __('to', 'wp-shortscore') . ' ' . $shortscore_title . '</a></div>';
             $shortscore_html .= '<span class="dtreviewed">' . $shortscore_date . '</span> ';
             $shortscore_html .= '<span class="outof">' . sprintf(__('out of %s.', 'wp-shortscore'), '<span class="best">10</span>') . '</span>';

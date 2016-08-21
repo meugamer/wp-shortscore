@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP SHORTSCORE\n"
-"POT-Creation-Date: 2016-08-20 23:44+0200\n"
-"PO-Revision-Date: 2016-08-20 23:44+0200\n"
+"POT-Creation-Date: 2016-08-21 10:56+0200\n"
+"PO-Revision-Date: 2016-08-21 10:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -20,43 +20,59 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: wp-shortscore.php:145
+#: wp-shortscore.php:163
 #, php-format
 msgid "%s"
 msgstr ""
 
-#: wp-shortscore.php:145
+#: wp-shortscore.php:163
 #, php-format
 msgid "one user review"
 msgid_plural "%s user reviews"
 msgstr[0] "Eine Bewertung"
 msgstr[1] "%s Bewertungen"
 
-#: wp-shortscore.php:145
+#: wp-shortscore.php:163
 msgid "on"
 msgstr "auf"
 
-#: wp-shortscore.php:145
+#: wp-shortscore.php:163
 msgid "to"
 msgstr "zu"
 
-#: wp-shortscore.php:147
+#: wp-shortscore.php:165
 #, php-format
 msgid "out of %s."
 msgstr "von %s"
 
-#: wp-shortscore.php:183
+#: wp-shortscore.php:202
 msgid "Add SHORTSCORE"
 msgstr "SHORTSCORE hinzufügen"
 
-#: wp-shortscore.php:195
+#: wp-shortscore.php:216
 msgid "Please input SHORTSCORE ID"
 msgstr "Bitte gib deine SHORTSCORE ID ein"
 
-#: wp-shortscore.php:198
+#: wp-shortscore.php:220
 msgid "You can find the SHORTSCORE ID next to your submitted SHORTSCORE on"
 msgstr ""
 "Du findest die SHORTSCORE ID bei deinem zuletzt abgegebenen SHORTSCORE auf"
+
+#: wp-shortscore.php:237
+msgid "This SHORTSCORE ID does not exist"
+msgstr "Diese SHORTCORE ID existiert nicht."
+
+#: wp-shortscore.php:240
+msgid "An error ocurred when saving the SHORTSCORE."
+msgstr "Beim Speichern der SHORTSCORE ID ist ein Fehler aufgetreten. "
+
+#: wp-shortscore.php:255
+msgid "Valid SHORTSCORE ID found and saved to post successfully"
+msgstr "Valide SPORTSCORE ID gefunden und erfolgreich am Beitrag gespeichert. "
+
+#: wp-shortscore.php:258
+msgid "SHORTSCORE ID saved"
+msgstr "SHORTSCORE ID gespeichert "
 
 #. Plugin Name of the plugin/theme
 msgid "WP SHORTSCORE"

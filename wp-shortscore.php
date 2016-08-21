@@ -234,10 +234,10 @@ class WP_SHORTSCORE
                 <?php
                 switch ($_GET['wp-shortscore-error']) {
                     case 'no-shortscore':
-                        echo 'This SHORTSCORE ID does not exist';
+                        _e('This SHORTSCORE ID does not exist','wp-shortscore');
                         break;
                     default:
-                        echo 'An error ocurred when saving the SHORTSCORE.';
+                        _e('An error ocurred when saving the SHORTSCORE.');
                         break;
                 }
                 ?>

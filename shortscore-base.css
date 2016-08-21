@@ -9,7 +9,8 @@
     padding: 0; }
   .shortscore-hreview .link {
     float: right;
-    width: 75%; }
+    width: 75%;
+  color: #108D4F; }
   .shortscore-hreview .text {
     border-top: 6px solid #108D4F;
     float: right;
@@ -24,3 +25,11 @@
   .shortscore-hreview .outof,
   .shortscore-hreview .dtreviewed {
     display: none; }
+
+  .type-game-title-h3{color: #108D4F; text-align: center;}
+
+@media screen and (min-width: 75em){
+
+  .type-game-title-h3{color: #108D4F; text-align: left;}
+
+}

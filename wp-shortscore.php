@@ -251,7 +251,7 @@ class WP_SHORTSCORE
     public function wp_shortscore_message()
     {
         if (array_key_exists('wp-shortscore-error', $_GET)) { ?>
-            <div class="error">
+            <div class="error ">
             <p>
                 <?php
                 switch ($_GET['wp-shortscore-error']) {
@@ -269,7 +269,7 @@ class WP_SHORTSCORE
         }
 
         if (array_key_exists('wp-shortscore-msg', $_GET)) { ?>
-            <div class="notice notice-success">
+            <div class="update notice notice-success is-dismissible">
             <p>
                 <?php
                 switch ($_GET['wp-shortscore-msg']) {

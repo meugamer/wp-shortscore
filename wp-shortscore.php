@@ -213,18 +213,29 @@ class WP_SHORTSCORE
      */
     public function shortscore_meta_callback($post)
     {
-
         wp_nonce_field(basename(__FILE__), 'shortscore_nonce');
         $shortscore_stored_meta = get_post_meta($post->ID);
+
+        if(isset ($shortscore_stored_meta['_shortscore_result'])){
+            $result = get_post_meta($post->ID, '_shortscore_result', true);
+            echo '<p><ul style="background-color: #108D4F; color: #fff; padding: 0.3em;">';
+            echo '<li><a style="color: white" href="' . $result->shortscore->url . '">' . __('Show on SHORTSCORE.org','wp-shortscore') . '</a></li>';
+            echo '<li>SHORTSCORER: <br><strong>' . $result->shortscore->author.'</strong></li>';
+            echo '<li>' . __('Game title','wp-shortscore') . ' <br><strong>' . $result->game->title.'</strong></li>';
+            echo '<li>' . __('Userscore','wp-shortscore') . ' <br><strong>' . $result->shortscore->userscore.'</strong></li>';
+            echo '</ul></p>';
+        }
+
         ?>
+
+        <p><?php _e('You can find the SHORTSCORE ID next to your submitted SHORTSCORE on', 'wp-shortscore') ?> <a
+                href="http://shortscore.org">SHORTSCORE.org</a></p>
         <p>
             <label for="_shortscore_id"
                    class="prfx-row-title"><?php _e('Please input SHORTSCORE ID', 'wp-shortscore') ?></label>
             <input type="text" name="_shortscore_id" id="_shortscore_id"
                    value="<?php if (isset ($shortscore_stored_meta['_shortscore_id'])) echo $shortscore_stored_meta['_shortscore_id'][0]; ?>"/>
         </p>
-        <p><?php _e('You can find the SHORTSCORE ID next to your submitted SHORTSCORE on', 'wp-shortscore') ?> <a
-                href="http://shortscore.org">SHORTSCORE.org</a></p>
         <?php
     }
 
@@ -258,7 +269,7 @@ class WP_SHORTSCORE
                 <?php
                 switch ($_GET['wp-shortscore-msg']) {
                     case 'success':
-                        _e('Valid SHORTSCORE ID found and saved to post successfully','wp-shortscore');
+                        _e('Valid SHORTSCORE ID found and data saved to post successfully','wp-shortscore');
                         break;
                     default:
                         _e('SHORTSCORE ID saved','wp-shortscore');

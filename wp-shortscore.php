@@ -153,6 +153,9 @@ class WP_SHORTSCORE
 
             $shortscore_html = '<div class="type-game">';
             $shortscore_html .= '<div class="hreview shortscore-hreview">';
+            $shortscore_html .= '<div class="type-game-title">';
+            $shortscore_html .= '<h3 class="type-game-title-h3">Rating on shortscore.org:</h3>';
+            $shortscore_html .= '</div>';
             $shortscore_html .= '<div class="rating">';
             $shortscore_html .= '<div class="shortscore shortscore-' . $shortscore . '">' . $shortscore . '</div>';
             $shortscore_html .= '</div>';

@@ -79,12 +79,11 @@ class WpShortscore
             $shortscore_id = get_post_meta($post_id, '_shortscore_id', true);
 
             $json = file_get_contents(WpShortscore::SHORTSCORE_URL . WpShortscore::SHORTSCORE_ENDPOINT . $shortscore_id);
-            $result = json_decode($json);
 
             // validate JSON structure
             try {
 
-                if (null === $result) {
+                if (null === ($result = json_decode($json))) {
                     throw new \Exception('result-null');
                 }
 

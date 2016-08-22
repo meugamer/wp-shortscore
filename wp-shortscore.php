@@ -2,8 +2,7 @@
 
 /*
 Plugin Name: WP SHORTSCORE
-Description: Displays your SHORTSCORE at the bottom of the post. Add a custom field `shortscore_id` with
-a shortscore.org ID (e.g. 374)
+Description: Displays a SHORTSCORE review box at the bottom of the post.
 
 Plugin URI:  http://shortscore.org
 Version:     1.0
@@ -12,13 +11,11 @@ Author URI:  http://marc.tv
 License URI: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
-class WP_SHORTSCORE
+class WpShortscore
 {
-
+    const SHORTSCORE_ENDPOINT = '/?get_shortscore=';
+    const SHORTSCORE_URL = 'https://shortscore.org';
     private $version = '1.0';
-    public $shortscore_baseurl = 'https://shortscore.org';
-    private $shortscore_css_path = '/wp-content/themes/twentyfifteen-child/shortscore.css';
-    public $shortscore_endpoint = '/?get_shortscore=';
 
     public function __construct()
     {
@@ -34,22 +31,28 @@ class WP_SHORTSCORE
         }
     }
 
+    /*
+     * Initialise frontend methods
+     */
     public function frontendInit()
     {
         add_action('wp_print_styles', array($this, 'enqueScripts'));
         add_filter('the_content', array($this, 'appendShortscore'));
     }
 
+    /*
+     * helper method to save meta data to a post.
+     * */
     public function savePostMeta($post_ID, $meta_name, $meta_value)
     {
         add_post_meta($post_ID, $meta_name, $meta_value, true) || update_post_meta($post_ID, $meta_name, $meta_value);
     }
 
-
+    /*
+     * Pull the Shortscore data by using the shortscore id and save it to the post.
+     */
     public function getShortscore($post_id)
     {
-
-
         // Checks save status
         $is_autosave = wp_is_post_autosave($post_id);
         $is_revision = wp_is_post_revision($post_id);
@@ -69,7 +72,7 @@ class WP_SHORTSCORE
 
             $shortscore_id = get_post_meta($post_id, '_shortscore_id', true);
 
-            $json = file_get_contents($this->shortscore_baseurl . $this->shortscore_endpoint . $shortscore_id);
+            $json = file_get_contents(WpShortscore::SHORTSCORE_URL . WpShortscore::SHORTSCORE_ENDPOINT . $shortscore_id);
             $result = json_decode($json);
 
             $error_code = false;
@@ -114,7 +117,7 @@ class WP_SHORTSCORE
                 $error_code = 'no-shortscore';
             }
 
-            if($error_code){
+            if (false !== $error_code && !empty($error_code)) {
                 add_filter('redirect_post_location', function ($location) use ($error_code) {
                     return add_query_arg('wp-shortscore-error', $error_code, $location);
                 });
@@ -136,52 +139,9 @@ class WP_SHORTSCORE
     }
 
 
-    private function displayShortscore()
-    {
-        $shortscore = '';
-        $post_id = get_the_ID();
-
-        if (
-            function_exists('get_post_meta') && get_post_meta($post_id, '_shortscore_result', true) != ''
-        ) {
-
-            $result = get_post_meta($post_id, '_shortscore_result', true);
-
-            $shortscore_url = $result->game->url;
-            $shortscore_comment_url = $result->shortscore->url;
-            $shortscore = round($result->shortscore->userscore);
-            $shortscore_summary = $result->shortscore->summary;
-            $shortscore_author = $result->shortscore->author;
-            $shortscore_title = $result->game->title;
-            $shortscore_date = $result->shortscore->date;
-            $shortscore_count = $result->game->count;
-
-            $shortscore_html = '<div class="type-game">';
-            $shortscore_html .= '<h3 class="shortscore-title">' . __('Rating on SHORTSCORE.org','wp-shortscore') . '</h3>';
-            $shortscore_html .= '<div class="hreview shortscore-hreview">';
-
-            $shortscore_html .= '<div class="text">';
-            $shortscore_html .= '<span class="item"> <a class="score" href="' . $shortscore_url . '"><strong class="fn">' . $shortscore_title . '</strong></a>: </span>';
-            $shortscore_html .= '<span class="summary">' . $shortscore_summary . '</span><span class="reviewer vcard"> – <span class="fn">' . $shortscore_author . '</span></span>';
-            $shortscore_html .= '</div>';
-
-            $shortscore_html .= '<div class="rating">';
-            $shortscore_html .= '<a href="' . $shortscore_comment_url . '" class="shortscore shortscore-' . $shortscore . '">' . $shortscore . '</a>';
-            $shortscore_html .= '</div>';
-
-            $shortscore_html .= '<div class="link"><a href="' . $shortscore_url . '">' . sprintf(__('%s', 'wp-shortscore'), '<span class="votes">' . sprintf(_n('one user review', '%s user reviews', $shortscore_count, 'wp-shortscore'), $shortscore_count) . '</span> ') . __('on', 'wp-shortscore') . ' SHORTSCORE.org ' . __('to', 'wp-shortscore') . ' ' . $shortscore_title . '</a></div>';
-            $shortscore_html .= '<span class="dtreviewed">' . $shortscore_date . '</span> ';
-            $shortscore_html .= '<span class="outof">' . sprintf(__('out of %s.', 'wp-shortscore'), '<span class="best">10</span>') . '</span>';
-            $shortscore_html .= '</div>';
-            $shortscore_html .= '</div>';
-
-            $shortscore = $shortscore_html;
-        }
-
-        return $shortscore;
-    }
-
-
+    /**
+     * Display Shortscore review box below a post
+     */
     public function appendShortscore($content)
     {
         if (is_single()) {
@@ -194,13 +154,16 @@ class WP_SHORTSCORE
 
     }
 
+    /**
+     * Load CSS in the theme for the SHORTSCORE styling.
+     */
     public function enqueScripts()
     {
         wp_enqueue_style(
-            "shortscore-styles", plugins_url( 'shortscore-base.css', __FILE__ ), $this->version);
+            "shortscore-styles", plugins_url('shortscore-base.css', __FILE__), $this->version);
 
         wp_enqueue_style(
-            "shortscore-base", plugins_url( 'shortscore.css', __FILE__ ), true, $this->version);
+            "shortscore-base", plugins_url('shortscore.css', __FILE__), true, $this->version);
     }
 
     /**
@@ -219,13 +182,13 @@ class WP_SHORTSCORE
         wp_nonce_field(basename(__FILE__), 'shortscore_nonce');
         $shortscore_stored_meta = get_post_meta($post->ID);
 
-        if(isset ($shortscore_stored_meta['_shortscore_result'])){
+        if (isset ($shortscore_stored_meta['_shortscore_result'])) {
             $result = get_post_meta($post->ID, '_shortscore_result', true);
             echo '<p><ul style="background-color: #108D4F; color: #fff; padding: 0.3em;">';
-            echo '<li><a style="color: white" href="' . $result->shortscore->url . '">' . __('Show on SHORTSCORE.org','wp-shortscore') . '</a></li>';
-            echo '<li>SHORTSCORER: <br><strong>' . $result->shortscore->author.'</strong></li>';
-            echo '<li>' . __('Game title','wp-shortscore') . ' <br><strong>' . $result->game->title.'</strong></li>';
-            echo '<li>' . __('Userscore','wp-shortscore') . ' <br><strong>' . $result->shortscore->userscore.'</strong></li>';
+            echo '<li><a style="color: white" href="' . $result->shortscore->url . '">' . __('Show on SHORTSCORE.org', 'wp-shortscore') . '</a></li>';
+            echo '<li>SHORTSCORER: <br><strong>' . $result->shortscore->author . '</strong></li>';
+            echo '<li>' . __('Game title', 'wp-shortscore') . ' <br><strong>' . $result->game->title . '</strong></li>';
+            echo '<li>' . __('Userscore', 'wp-shortscore') . ' <br><strong>' . $result->shortscore->userscore . '</strong></li>';
             echo '</ul></p>';
         }
 
@@ -256,7 +219,7 @@ class WP_SHORTSCORE
                 <?php
                 switch ($_GET['wp-shortscore-error']) {
                     case 'no-shortscore':
-                        _e('This SHORTSCORE ID does not exist','wp-shortscore');
+                        _e('This SHORTSCORE ID does not exist', 'wp-shortscore');
                         break;
                     default:
                         _e('An error ocurred when saving the SHORTSCORE.');
@@ -274,10 +237,10 @@ class WP_SHORTSCORE
                 <?php
                 switch ($_GET['wp-shortscore-msg']) {
                     case 'success':
-                        _e('Valid SHORTSCORE ID found and data saved to post successfully','wp-shortscore');
+                        _e('Valid SHORTSCORE ID found and data saved to post successfully', 'wp-shortscore');
                         break;
                     default:
-                        _e('SHORTSCORE ID saved','wp-shortscore');
+                        _e('SHORTSCORE ID saved', 'wp-shortscore');
                         break;
                 }
                 ?>
@@ -286,6 +249,52 @@ class WP_SHORTSCORE
 
         }
     }
+
+    private function displayShortscore()
+    {
+        $shortscore = '';
+        $post_id = get_the_ID();
+
+        if (
+            function_exists('get_post_meta') && get_post_meta($post_id, '_shortscore_result', true) != ''
+        ) {
+
+            $result = get_post_meta($post_id, '_shortscore_result', true);
+
+            $shortscore_url = $result->game->url;
+            $shortscore_comment_url = $result->shortscore->url;
+            $shortscore = round($result->shortscore->userscore);
+            $shortscore_summary = nl2br($result->shortscore->summary);
+            $shortscore_author = $result->shortscore->author;
+            $shortscore_title = $result->game->title;
+            $shortscore_date = $result->shortscore->date;
+            $shortscore_count = $result->game->count;
+
+            $shortscore_html = '<div class="type-game">';
+            $shortscore_html .= '<h3 class="shortscore-title">' . __('Rating on SHORTSCORE.org', 'wp-shortscore') . '</h3>';
+            $shortscore_html .= '<div class="hreview shortscore-hreview">';
+
+            $shortscore_html .= '<div class="text">';
+            $shortscore_html .= '<span class="item"> <a class="score" href="' . $shortscore_url . '"><strong class="fn">' . $shortscore_title . '</strong></a>: </span>';
+            $shortscore_html .= '<span class="summary">' . $shortscore_summary . '</span><span class="reviewer vcard"> – <span class="fn">' . $shortscore_author . '</span></span>';
+            $shortscore_html .= '</div>';
+
+            $shortscore_html .= '<div class="rating">';
+            $shortscore_html .= '<a href="' . $shortscore_comment_url . '" class="shortscore shortscore-' . $shortscore . '">' . $shortscore . '</a>';
+            $shortscore_html .= '</div>';
+
+            $shortscore_html .= '<div class="link"><a href="' . $shortscore_url . '">' . sprintf(__('%s', 'wp-shortscore'), '<span class="votes">' . sprintf(_n('one user review', '%s user reviews', $shortscore_count, 'wp-shortscore'), $shortscore_count) . '</span> ') . __('on', 'wp-shortscore') . ' SHORTSCORE.org ' . __('to', 'wp-shortscore') . ' ' . $shortscore_title . '</a></div>';
+            $shortscore_html .= '<span class="dtreviewed">' . $shortscore_date . '</span> ';
+            $shortscore_html .= '<span class="outof">' . sprintf(__('out of %s.', 'wp-shortscore'), '<span class="best">10</span>') . '</span>';
+            $shortscore_html .= '</div>';
+            $shortscore_html .= '</div>';
+
+            $shortscore = $shortscore_html;
+        }
+
+        return $shortscore;
+    }
+
 }
 
-new WP_SHORTSCORE();
+new WpShortscore();

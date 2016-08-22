@@ -7,8 +7,8 @@ Stable tag: 1.0
 
 == Description ==
 
-Displays a shortscore rating at the bottom of a post. Complete with the hreview microformat.
-Provides a meta box for easy input of your shortscore id.
+Displays a shortscore review box at the bottom of a post. The markup uses the hreview microformat.
+Provides a meta box for easy input of your shortscore id in the backend.
 
 == Installation ==
 

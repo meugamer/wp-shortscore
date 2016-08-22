@@ -197,10 +197,10 @@ class WP_SHORTSCORE
     public function enqueScripts()
     {
         wp_enqueue_style(
-            "external-shortscore-styles", $this->shortscore_baseurl . $this->shortscore_css_path, true, $this->version);
+            "shortscore-styles", plugins_url( 'shortscore-base.css', __FILE__ ), $this->version);
 
         wp_enqueue_style(
-            "shortscore-base", WP_PLUGIN_URL . '/wp-shortscore/shortscore-base.css', true, $this->version);
+            "shortscore-base", plugins_url( 'shortscore.css', __FILE__ ), true, $this->version);
     }
 
     /**

@@ -1,5 +1,4 @@
 <?php
-
 /*
 Plugin Name: WP SHORTSCORE
 Description: Displays a SHORTSCORE review box at the bottom of the post.
@@ -11,12 +10,18 @@ Author URI:  http://marc.tv
 License URI: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */
 
+/**
+ * Class WpShortscore
+ */
 class WpShortscore
 {
     const SHORTSCORE_ENDPOINT = '/?get_shortscore=';
-    const SHORTSCORE_URL = 'https://shortscore.org';
+    const SHORTSCORE_URL      = 'https://shortscore.org';
     private $version = '1.0';
 
+    /**
+     * WpShortscore constructor.
+     */
     public function __construct()
     {
         load_plugin_textdomain('wp-shortscore', false, dirname(plugin_basename(__FILE__)) . '/language/');
@@ -48,8 +53,9 @@ class WpShortscore
         add_post_meta($post_ID, $meta_name, $meta_value, true) || update_post_meta($post_ID, $meta_name, $meta_value);
     }
 
-    /*
+    /**
      * Pull the Shortscore data by using the shortscore id and save it to the post.
+     * @param $post_id
      */
     public function getShortscore($post_id)
     {
@@ -75,51 +81,35 @@ class WpShortscore
             $json = file_get_contents(WpShortscore::SHORTSCORE_URL . WpShortscore::SHORTSCORE_ENDPOINT . $shortscore_id);
             $result = json_decode($json);
 
-            $error_code = false;
+            // validate JSON structure
+            try {
 
-            if (!isset($result->game->id)) {
-                $error_code = 'no-id';
-            }
+                if (null === $result) {
+                    throw new \Exception('result-null');
+                }
 
-            if (!isset($result->game->url)) {
-                $error_code = 'url';
-            }
+                // JSON structure (defined as array)
+                $structure = [
+                    'game'       => ['id', 'url', 'title', 'count'],
+                    'shortscore' => ['userscore', 'url', 'author','summary','date', 'id']
+                ];
 
-            if (!isset($result->shortscore->userscore)) {
-                $error_code = 'userscore';
-            }
+                foreach ($structure as $property => $subProperties) {
+                    if(!($result->$property)) {
+                        throw new \Exception($property);
+                    }
+                    foreach ($subProperties as $subProperty) {
+                        if (!isset($result->{$property}->$subProperty)) {
+                            throw new \Exception($property . '-' . $subProperty);
+                        }
+                        // third level or SubSubProperties
 
-            if (!isset($result->shortscore->url)) {
-                $error_code = 'shortscore-url';
-            }
+                    }
+                }
 
-            if (!isset($result->shortscore->author)) {
-                $error_code = 'author';
-            }
-
-            if (!isset($result->shortscore->summary)) {
-                $error_code = 'summary';
-            }
-
-            if (!isset($result->game->title)) {
-                $error_code = 'title';
-            }
-
-            if (!isset($result->shortscore->date)) {
-                $error_code = 'date';
-            }
-
-            if (!isset($result->game->count)) {
-                $error_code = 'count';
-            }
-
-            if (!isset($result->shortscore->id)) {
-                $error_code = 'no-shortscore';
-            }
-
-            if (false !== $error_code && !empty($error_code)) {
-                add_filter('redirect_post_location', function ($location) use ($error_code) {
-                    return add_query_arg('wp-shortscore-error', $error_code, $location);
+            } catch (\Exception $exception) {
+                add_filter('redirect_post_location', function ($location) use ($exception) {
+                    return add_query_arg('wp-shortscore-error', $exception->getMessage(), $location);
                 });
                 return;
             }
@@ -142,7 +132,12 @@ class WpShortscore
     /**
      * Display Shortscore review box below a post
      */
-    public function appendShortscore($content)
+
+    /**
+     * @param string $content
+     * @return string
+     */
+    public function appendShortscore(/* string */ $content)
     {
         if (is_single()) {
             // Add SHORTSCORE to the end of the post.
@@ -207,7 +202,6 @@ class WpShortscore
         <?php
     }
 
-
     /**
      * Admin notices
      **/
@@ -218,11 +212,12 @@ class WpShortscore
             <p>
                 <?php
                 switch ($_GET['wp-shortscore-error']) {
-                    case 'no-shortscore':
+                    case 'shortscore-id':
+                    case 'result-null':
                         _e('This SHORTSCORE ID does not exist', 'wp-shortscore');
                         break;
                     default:
-                        _e('An error ocurred when saving the SHORTSCORE.');
+                        echo __('An error ocurred when saving the SHORTSCORE.') .' [hint: '.$_GET['wp-shortscore-error'].']';
                         break;
                 }
                 ?>
@@ -250,6 +245,9 @@ class WpShortscore
         }
     }
 
+    /**
+     * @return float|string
+     */
     private function displayShortscore()
     {
         $shortscore = '';

@@ -4,7 +4,7 @@ Plugin Name: WP SHORTSCORE
 Description: Displays a SHORTSCORE review box at the bottom of the post.
 
 Plugin URI:  http://shortscore.org
-Version:     1.0
+Version:     1.3
 Author:      MarcDK, le-phil.de
 Author URI:  http://marc.tv
 License URI: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
@@ -17,7 +17,7 @@ class WpShortscore
 {
     const SHORTSCORE_ENDPOINT = '/?get_shortscore=';
     const SHORTSCORE_URL      = 'https://shortscore.org';
-    private $version = '1.0';
+    private $version = '1.3';
 
     /**
      * WpShortscore constructor.

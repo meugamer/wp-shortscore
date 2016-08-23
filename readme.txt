@@ -3,13 +3,16 @@ Contributors: MarcDK,le-phil.de
 Tags: marctv, shortscore
 Requires at least: 3.0
 Tested up to: 4.6
-Stable tag: 1.3
+Stable tag: 1.4
 
 == Description ==
 
-Displays a shortscore review box at the bottom of a post. The markup uses the hreview microformat.
-Provides a meta box for easy input of your shortscore id in the backend.
+Present your SHORTSCORES in a review box at the end of your posts.
 
+It's easy: get the SHORTSCORE ID (e.g. "231") next to your game review on SHORTSCORE.org. After you installed this
+plugin you can enter this ID number in the new meta box at the "create post" or "edit post" dialog in Wordpress.
+
+The data is pulled from SHORTSCORE.org and copied into you Wordpress database for ever.
 
 == Installation ==
 
@@ -18,7 +21,7 @@ Provides a meta box for easy input of your shortscore id in the backend.
 
 == Changelog ==
 
-= 1.3 =
+= 1.4 =
 
 First version for wordpress.org repository.
 
@@ -29,15 +32,12 @@ Inital version
 == Frequently Asked Questions ==
 
 Q: Where do I find the SHORTSCORE ID?
-
 A: Next to your SHORTSCORE on SHORTSCORE.org you will find the SHORTSCORE ID you can use. See screenshot 1.
 
 Q: Where do put the SHORTSCORE ID?
-
 A: There is a meta box in the right sidebar at the very end of the post editing page. See Screenshot 2.
 
 Q: Where does the review box show up?
-
 A: At the end of the post in the frontend. See Screenshot 3.
 
 == Screenshots ==

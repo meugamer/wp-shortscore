@@ -1,11 +1,10 @@
 <?php
 /*
 Plugin Name: WP SHORTSCORE
-Description: Displays a SHORTSCORE review box at the bottom of the post.
-
+Description: Present your SHORTSCORES in a review box at the end of your posts.
 Plugin URI:  http://shortscore.org
-Version:     1.4
-Author:      MarcDK, le-phil.de
+Version:     1.6
+Author:      MarcDK, lephilde
 Author URI:  http://marc.tv
 License URI: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 */

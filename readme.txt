@@ -3,7 +3,7 @@ Contributors: MarcDK,le-phil.de
 Tags: marctv, shortscore
 Requires at least: 3.0
 Tested up to: 4.6
-Stable tag: 1.4
+Stable tag: 1.6
 
 == Description ==
 
@@ -12,7 +12,7 @@ Present your SHORTSCORES in a review box at the end of your posts.
 It's easy: get the SHORTSCORE ID (e.g. "231") next to your game review on SHORTSCORE.org. After you installed this
 plugin you can enter this ID number in the new meta box at the "create post" or "edit post" dialog in Wordpress.
 
-The data is pulled from SHORTSCORE.org and copied into you Wordpress database for ever.
+The data is pulled from SHORTSCORE.org and copied into you Wordpress database - for ever.
 
 == Installation ==
 
@@ -21,7 +21,7 @@ The data is pulled from SHORTSCORE.org and copied into you Wordpress database fo
 
 == Changelog ==
 
-= 1.4 =
+= 1.6 =
 
 First version for wordpress.org repository.
 

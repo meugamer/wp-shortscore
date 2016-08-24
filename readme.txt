@@ -3,7 +3,7 @@ Contributors: MarcDK,le-phil.de
 Tags: marctv, shortscore
 Requires at least: 3.0
 Tested up to: 4.6
-Stable tag: 1.6
+Stable tag: 1.7
 
 == Description ==
 
@@ -21,7 +21,7 @@ The data is pulled from SHORTSCORE.org and copied into you Wordpress database - 
 
 == Changelog ==
 
-= 1.6 =
+= 1.7 =
 
 First version for wordpress.org repository.
 
@@ -32,12 +32,17 @@ Inital version
 == Frequently Asked Questions ==
 
 Q: Where do I find the SHORTSCORE ID?
+
 A: Next to your SHORTSCORE on SHORTSCORE.org you will find the SHORTSCORE ID you can use. See screenshot 1.
 
+
 Q: Where do put the SHORTSCORE ID?
+
 A: There is a meta box in the right sidebar at the very end of the post editing page. See Screenshot 2.
 
+
 Q: Where does the review box show up?
+
 A: At the end of the post in the frontend. See Screenshot 3.
 
 == Screenshots ==

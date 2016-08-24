@@ -15,7 +15,7 @@ License URI: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
 class WpShortscore
 {
     const SHORTSCORE_ENDPOINT = '/?get_shortscore=';
-    const SHORTSCORE_URL      = 'https://shortscore.org';
+    const SHORTSCORE_URL = 'https://shortscore.org';
     private $version = '1.4';
 
     /**
@@ -88,12 +88,12 @@ class WpShortscore
 
                 // JSON structure (defined as array)
                 $structure = [
-                    'game'       => ['id', 'url', 'title', 'count'],
-                    'shortscore' => ['userscore', 'url', 'author','summary','date', 'id']
+                    'game' => ['id', 'url', 'title', 'count'],
+                    'shortscore' => ['userscore', 'url', 'author', 'summary', 'date', 'id']
                 ];
 
                 foreach ($structure as $property => $subProperties) {
-                    if(!($result->$property)) {
+                    if (!($result->$property)) {
                         throw new \Exception($property);
                     }
                     foreach ($subProperties as $subProperty) {
@@ -135,7 +135,8 @@ class WpShortscore
      * @param string $content
      * @return string
      */
-    public function appendShortscore(/* string */ $content)
+    public function appendShortscore(/* string */
+        $content)
     {
         if (is_single()) {
             // Add SHORTSCORE to the end of the post.
@@ -152,11 +153,13 @@ class WpShortscore
      */
     public function enqueScripts()
     {
-        wp_enqueue_style(
-            "shortscore-styles", plugins_url('shortscore-base.css', __FILE__), $this->version);
+        if (is_single() && get_post_meta(get_the_ID(), '_shortscore_id', true) != '') {
+            wp_enqueue_style(
+                "shortscore-styles", plugins_url('shortscore-base.css', __FILE__), $this->version);
 
-        wp_enqueue_style(
-            "shortscore-base", plugins_url('shortscore.css', __FILE__), true, $this->version);
+            wp_enqueue_style(
+                "shortscore-base", plugins_url('shortscore.css', __FILE__), true, $this->version);
+        }
     }
 
     /**
@@ -164,7 +167,7 @@ class WpShortscore
      */
     public function shortscore_custom_meta()
     {
-        add_meta_box('shortscore_meta', __(__('Add SHORTSCORE', 'wp-shortscore'), 'prfx-textdomain'), array($this, 'shortscore_meta_callback'), 'post');
+        add_meta_box('shortscore_meta', __('Add SHORTSCORE', 'wp-shortscore'), array($this, 'shortscore_meta_callback'), 'post','advanced','high');
     }
 
     /**
@@ -215,7 +218,7 @@ class WpShortscore
                         _e('This SHORTSCORE ID does not exist', 'wp-shortscore');
                         break;
                     default:
-                        echo __('An error ocurred when saving the SHORTSCORE.') .' [hint: '.$_GET['wp-shortscore-error'].']';
+                        echo __('An error occurred when saving the SHORTSCORE:') . ' [' . $_GET['wp-shortscore-error'] . ']';
                         break;
                 }
                 ?>

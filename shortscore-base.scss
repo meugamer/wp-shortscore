@@ -54,7 +54,8 @@ $duration: .5s;
     }
 
     .outof,
-    .dtreviewed {
+    .dtreviewed,
+    .best {
       display: none;
     }
   }
@@ -63,6 +64,12 @@ $duration: .5s;
     color: $shortscore-color;
     text-align: center;
     margin-bottom: 1em;
+
+    a {
+      color: $shortscore-color;
+      text-decoration: none;
+      border: none;
+    }
 
     @media screen and (min-width: 75em) {
       text-align: left;

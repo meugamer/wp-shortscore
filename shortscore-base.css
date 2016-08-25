@@ -32,12 +32,17 @@
   .type-game .shortscore-hreview .summary {
     font-size: 110%; }
   .type-game .shortscore-hreview .outof,
-  .type-game .shortscore-hreview .dtreviewed {
+  .type-game .shortscore-hreview .dtreviewed,
+  .type-game .shortscore-hreview .best {
     display: none; }
 .type-game .shortscore-title {
   color: #108D4F;
   text-align: center;
   margin-bottom: 1em; }
+  .type-game .shortscore-title a {
+    color: #108D4F;
+    text-decoration: none;
+    border: none; }
   @media screen and (min-width: 75em) {
     .type-game .shortscore-title {
       text-align: left; } }

@@ -3,7 +3,7 @@ Contributors: MarcDK,lephilde
 Tags: marctv, shortscore, review box, hreview
 Requires at least: 3.0
 Tested up to: 4.6
-Stable tag: 1.8
+Stable tag: 1.9
 
 == Description ==
 
@@ -21,9 +21,9 @@ The data is pulled from SHORTSCORE.org and copied into you Wordpress database - 
 
 == Changelog ==
 
-= 1.8 =
+= 1.9 =
 
-First version for wordpress.org repository.
+Fixed hreview microformat markup.
 
 = 1.0 =
 

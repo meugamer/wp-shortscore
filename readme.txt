@@ -3,7 +3,7 @@ Contributors: MarcDK,le-phil.de
 Tags: marctv, shortscore
 Requires at least: 3.0
 Tested up to: 4.6
-Stable tag: 1.7
+Stable tag: 1.8
 
 == Description ==
 
@@ -21,7 +21,7 @@ The data is pulled from SHORTSCORE.org and copied into you Wordpress database - 
 
 == Changelog ==
 
-= 1.7 =
+= 1.8 =
 
 First version for wordpress.org repository.
 

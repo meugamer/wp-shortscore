@@ -3,7 +3,7 @@
 Plugin Name: WP SHORTSCORE
 Description: Present your SHORTSCORES in a review box at the end of your posts.
 Plugin URI:  http://shortscore.org
-Version:     2.0
+Version:     2.0.2
 Text Domain: wp-shortscore
 Domain Path: /language
 Author:      MarcDK, lephilde
@@ -18,26 +18,32 @@ class WpShortscore
 {
     const SHORTSCORE_ENDPOINT = '/?get_shortscore=';
     const SHORTSCORE_URL = 'https://shortscore.org';
-    private $version = '2.0';
+    private $version = '2.0.2';
 
     /**
      * WpShortscore constructor.
      */
     public function __construct()
     {
-        load_plugin_textdomain('wp-shortscore', false, dirname(plugin_basename(__FILE__)) . '/language/');
+        add_action('plugins_loaded', array($this, 'wan_load_textdomain'));
 
         $this->frontendInit();
 
         if (is_admin()) {
-
             add_action('save_post', array($this, 'getShortscore'));
             add_action('add_meta_boxes', array($this, 'shortscore_custom_meta'));
             add_action('admin_notices', array($this, 'wp_shortscore_message'));
         }
     }
 
-    /*
+    /**
+     * Load textdomain
+     */
+    public function wan_load_textdomain() {
+        load_plugin_textdomain('wp-shortscore', false, dirname(plugin_basename(__FILE__)) . '/language/');
+    }
+
+    /**
      * Initialise frontend methods
      */
     public function frontendInit()
@@ -55,7 +61,7 @@ class WpShortscore
     }
 
     /**
-     * Pull the Shortscore data by using the shortscore id and save it to the post.
+     * Pull Shortscore data by using the shortscore id and save it to the post.
      * @param $post_id
      */
     public function getShortscore($post_id)
@@ -169,7 +175,7 @@ class WpShortscore
      */
     public function shortscore_custom_meta()
     {
-        add_meta_box('shortscore_meta', __('Add SHORTSCORE', 'wp-shortscore'), array($this, 'shortscore_meta_callback'), 'post','advanced','high');
+        add_meta_box('shortscore_meta', __('Add SHORTSCORE', 'wp-shortscore'), array($this, 'shortscore_meta_callback'), 'post', 'advanced', 'high');
     }
 
     /**
@@ -281,12 +287,13 @@ class WpShortscore
             $shortscore_html .= '</div>';
 
             $shortscore_html .= '<div class="rating">';
-            $shortscore_html .= '<a href="' . $shortscore_comment_url . '" class="shortscore shortscore-' . $shortscore . '"><span class="value">' . $shortscore . '</span><span class="best">10</span></a>';
+            $shortscore_html .= '<a href="' . $shortscore_comment_url . '" class="shortscore shortscore-' . $shortscore . '"><span class="value">' . $shortscore . '</span></a>';
+            $shortscore_html .= '<div class="outof">' . sprintf(__('out of %s.', 'wp-shortscore'), '<span class="best">10</span>') . '</div>';
+            $shortscore_html .= '<span class="dtreviewed">' . $shortscore_date . '</span> ';
             $shortscore_html .= '</div>';
 
             $shortscore_html .= '<div class="link"><a href="' . $shortscore_url . '">' . sprintf(__('%s', 'wp-shortscore'), '<span class="votes">' . sprintf(_n('one user review', '%s user reviews', $shortscore_count, 'wp-shortscore'), $shortscore_count) . '</span> ') . __('on', 'wp-shortscore') . ' SHORTSCORE.org ' . __('to', 'wp-shortscore') . ' ' . $shortscore_title . '</a></div>';
-            $shortscore_html .= '<span class="dtreviewed">' . $shortscore_date . '</span> ';
-            $shortscore_html .= '<span class="outof">' . __('out of %s.', 'wp-shortscore');
+
             $shortscore_html .= '</div>';
             $shortscore_html .= '</div>';
 

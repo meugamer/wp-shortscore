@@ -85,7 +85,8 @@ class WpShortscore
 
             $shortscore_id = get_post_meta($post_id, '_shortscore_id', true);
 
-            $json = file_get_contents(WpShortscore::SHORTSCORE_URL . WpShortscore::SHORTSCORE_ENDPOINT . $shortscore_id);
+            $call = wp_remote_get(WpShortscore::SHORTSCORE_URL . WpShortscore::SHORTSCORE_ENDPOINT . $shortscore_id);
+            $json = wp_remote_retrieve_body($call);
 
             // validate JSON structure
             try {

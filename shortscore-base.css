@@ -9,15 +9,18 @@
     line-height: 1.2;
     padding: 0; }
     .type-game .shortscore-hreview .rating a {
-      display: block;
-      border-bottom: none;
-      color: #fff; }
+      display: block !important;
+      border-bottom: none !important;
+      color: #fff !important;
+      text-decoration: none !important; }
       .type-game .shortscore-hreview .rating a:hover {
         color: #fff; }
   .type-game .shortscore-hreview .link {
     float: left;
     padding: 1em;
     padding-top: 0; }
+    .type-game .shortscore-hreview .link a {
+      text-decoration: none; }
   .type-game .shortscore-hreview .text {
     float: left;
     padding: 1em;
@@ -26,7 +29,8 @@
     background-color: #108D4F; }
     .type-game .shortscore-hreview .text a {
       color: #fff;
-      border-bottom: none; }
+      border-bottom: none;
+      text-decoration: none; }
     .type-game .shortscore-hreview .text .item .fn {
       font-weight: 700; }
   .type-game .shortscore-hreview .summary {
@@ -42,7 +46,8 @@
   .type-game .shortscore-title a {
     color: #108D4F;
     text-decoration: none;
-    border: none; }
+    border: none;
+    text-decoration: none; }
   @media screen and (min-width: 75em) {
     .type-game .shortscore-title {
       text-align: left; } }

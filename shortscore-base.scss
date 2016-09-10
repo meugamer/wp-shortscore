@@ -15,9 +15,10 @@ $duration: .5s;
       padding: 0;
 
       a {
-        display: block;
-        border-bottom: none;
-        color: #fff;
+        display: block !important;
+        border-bottom: none !important;
+        color: #fff !important;
+        text-decoration: none !important;
 
         &:hover {
           color: #fff;
@@ -30,6 +31,9 @@ $duration: .5s;
       padding: 1em;
       padding-top: 0;
 
+      a {
+        text-decoration: none;
+      }
     }
 
     .text {
@@ -42,6 +46,7 @@ $duration: .5s;
       a {
         color: #fff;
         border-bottom: none;
+        text-decoration: none;
       }
 
       .item .fn {
@@ -69,6 +74,7 @@ $duration: .5s;
       color: $shortscore-color;
       text-decoration: none;
       border: none;
+      text-decoration: none;
     }
 
     @media screen and (min-width: 75em) {

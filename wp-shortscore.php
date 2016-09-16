@@ -3,7 +3,7 @@
 Plugin Name: WP SHORTSCORE
 Description: Present your SHORTSCORES in a review box at the end of your posts.
 Plugin URI:  http://shortscore.org
-Version:     2.0.3
+Version:     2.0.4
 Text Domain: wp-shortscore
 Domain Path: /language
 Author:      MarcDK, lephilde
@@ -122,6 +122,10 @@ class WpShortscore
             }
 
             $this->savePostMeta($post_id, '_shortscore_result', $result);
+
+            $shortscore_user_rating = round($result->shortscore->userscore);
+
+            $this->savePostMeta($post_id, '_shortscore_user_rating', $shortscore_user_rating);
 
             $msg_code = 'success';
 

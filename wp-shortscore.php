@@ -142,9 +142,6 @@ class WpShortscore
 
     /**
      * Display Shortscore review box below a post
-     */
-
-    /**
      * @param string $content
      * @return string
      */

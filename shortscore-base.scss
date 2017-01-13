@@ -19,6 +19,8 @@ $duration: .5s;
         border-bottom: none !important;
         color: #fff !important;
         text-decoration: none !important;
+        box-shadow: none !important;
+        -webkit-box-shadow: none !important;
 
         &:hover {
           color: #fff;

@@ -12,7 +12,9 @@
       display: block !important;
       border-bottom: none !important;
       color: #fff !important;
-      text-decoration: none !important; }
+      text-decoration: none !important;
+      box-shadow: none !important;
+      -webkit-box-shadow: none !important; }
       .type-game .shortscore-hreview .rating a:hover {
         color: #fff; }
   .type-game .shortscore-hreview .link {

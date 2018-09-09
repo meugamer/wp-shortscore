@@ -1,95 +1,86 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WP SHORTSCORE\n"
-"POT-Creation-Date: 2016-08-21 12:23+0200\n"
-"PO-Revision-Date: 2016-08-21 12:23+0200\n"
+"POT-Creation-Date: 2018-09-09 20:54+0200\n"
+"PO-Revision-Date: 2018-09-09 20:54+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.12\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-WPHeader: wp-shortscore.php\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: wp-shortscore.php:160
-msgid "Rating on SHORTSCORE.org"
-msgstr "Bewertung auf SHORTSCORE.org"
-
-#: wp-shortscore.php:169
-#, php-format
-msgid "%s"
-msgstr ""
-
-#: wp-shortscore.php:169
-#, php-format
-msgid "one user review"
-msgid_plural "%s user reviews"
-msgstr[0] "Eine Bewertung"
-msgstr[1] "%s Bewertungen"
-
-#: wp-shortscore.php:169
-msgid "on"
-msgstr "auf"
-
-#: wp-shortscore.php:169
-msgid "to"
-msgstr "zu"
-
-#: wp-shortscore.php:171
-#, php-format
-msgid "out of %s."
-msgstr "von %s"
-
-#: wp-shortscore.php:208
+#: wp-shortscore.php:194
 msgid "Add SHORTSCORE"
 msgstr "SHORTSCORE hinzufügen"
 
-#: wp-shortscore.php:222
-msgid "Show on SHORTSCORE.org"
-msgstr "Zeige auf SHORTSCORE.org"
-
-#: wp-shortscore.php:224
+#: wp-shortscore.php:243
 msgid "Game title"
 msgstr "Spieltitel"
 
-#: wp-shortscore.php:225
-msgid "Userscore"
-msgstr "Benutzerwertung"
+#: wp-shortscore.php:249
+msgid "Shortscore (1 to 10)"
+msgstr "Shortscore (1 bis 10)"
 
-#: wp-shortscore.php:231
-msgid "You can find the SHORTSCORE ID next to your submitted SHORTSCORE on"
-msgstr ""
-"Du findest die SHORTSCORE ID bei deinem zuletzt abgegebenen SHORTSCORE auf"
+#: wp-shortscore.php:255
+msgid "Summary"
+msgstr "Zusammenfassung"
 
-#: wp-shortscore.php:235
-msgid "Please input SHORTSCORE ID"
-msgstr "Bitte gib deine SHORTSCORE ID ein"
-
-#: wp-shortscore.php:254
+#: wp-shortscore.php:306
 msgid "This SHORTSCORE ID does not exist"
 msgstr "Diese SHORTCORE ID existiert nicht."
 
-#: wp-shortscore.php:257
-msgid "An error ocurred when saving the SHORTSCORE."
-msgstr "Beim Speichern der SHORTSCORE ID ist ein Fehler aufgetreten. "
+#: wp-shortscore.php:309
+msgid "An error occurred when saving the SHORTSCORE:"
+msgstr "Fehler beim Speichern der SHORTSCORE:"
 
-#: wp-shortscore.php:272
+#: wp-shortscore.php:324
 msgid "Valid SHORTSCORE ID found and data saved to post successfully"
 msgstr ""
 "Valide SHORTSCORE ID gefunden und Daten erfolgreich am Beitrag gespeichert. "
 
-#: wp-shortscore.php:275
+#: wp-shortscore.php:327
 msgid "SHORTSCORE ID saved"
 msgstr "SHORTSCORE ID gespeichert "
+
+#: wp-shortscore.php:376
+msgid "The SHORTSCORE needs to be greater than zero."
+msgstr "Der SHORTSCORE muss höher als 0 sein."
+
+#: wp-shortscore.php:381
+msgid "Summary field is empty."
+msgstr "Das Feld \"Zusammenfassung\" ist leer."
+
+#: wp-shortscore.php:385
+msgid "Game title field is emtpy."
+msgstr "Das Feld \"Spieltitel\" ist leer."
+
+#: wp-shortscore.php:390
+msgid "Attention:"
+msgstr "Achtung:"
+
+#: wp-shortscore.php:397
+msgid "Preview"
+msgstr "Vorschau"
+
+#: wp-shortscore.php:415
+#, php-format
+msgid "out of %s."
+msgstr "von %s"
+
+#: wp-shortscore.php:426
+msgid "Delete SHORTSCORE"
+msgstr "SHORTSCORE entfernen"
 
 #. Plugin Name of the plugin/theme
 msgid "WP SHORTSCORE"
@@ -97,35 +88,23 @@ msgstr "WP SHORTSCORE"
 
 #. Plugin URI of the plugin/theme
 msgid "http://shortscore.org"
-msgstr ""
+msgstr "http://shortscore.org"
 
 #. Description of the plugin/theme
-msgid ""
-"Displays your SHORTSCORE at the bottom of the post. Add a custom field "
-"`shortscore_id` with"
+msgid "Present your SHORTSCORES in a review box at the end of your posts."
 msgstr ""
+"Präsentiere deine SHORTSCORES in einem Übersichtsfeld am Ende deiner Posts."
 
 #. Author of the plugin/theme
-msgid "MarcDK, le-phil.de"
+msgid "MarcDK, lephilde"
 msgstr ""
 
 #. Author URI of the plugin/theme
 msgid "http://marc.tv"
 msgstr ""
 
-#~ msgid "Valid SHORTSCORE ID found and saved to post successfully"
-#~ msgstr ""
-#~ "Valide SHORTSCORE ID gefunden und erfolgreich am Beitrag gespeichert. "
+#~ msgid "Game title is emtpy."
+#~ msgstr "Spieltitel ist leer."
 
-#~ msgid "Rating on shortscore.org"
-#~ msgstr "Bewertung auf SPORTSCORE.org"
-
-#~ msgid "You can find the SHORTSCORE ID next to your submitted shortscore on"
-#~ msgstr ""
-#~ "Du findest die SHORTSCORE ID bei deinem zuletzt abgegebenen SHORTSCORE auf"
-
-#~ msgid "out of %s. There are %s"
-#~ msgstr "von %s. Es gibt %s"
-
-#~ msgid "out of %s based on %s"
-#~ msgstr "von %s basiert auf %s"
+#~ msgid "The review score needs to be greater than zero."
+#~ msgstr "Die Bewertung  muss höher als 0 sein."

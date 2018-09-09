@@ -3,7 +3,7 @@
 Plugin Name: WP SHORTSCORE
 Description: Present your SHORTSCORES in a review box at the end of your posts.
 Plugin URI:  http://shortscore.org
-Version:     3.0
+Version:     3.1
 Text Domain: wp-shortscore
 Domain Path: /language
 Author:      MarcDK, lephilde
@@ -15,7 +15,7 @@ License URI: GPL v2 - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * Class WpShortscore
  */
 class WpShortscore {
-	private $version = '3.0';
+	private $version = '3.1';
 
 	/**
 	 * WpShortscore constructor.
@@ -45,7 +45,7 @@ class WpShortscore {
 	 */
 	public function frontendInit() {
 		add_action( 'wp_print_styles', array( $this, 'enqueScripts' ) );
-		add_filter( 'the_content', array( $this, 'appendShortscore' ),99 );
+		add_filter( 'the_content', array( $this, 'appendShortscore' ), 99 );
 	}
 
 	public function frontendAdminInit() {
@@ -83,7 +83,7 @@ class WpShortscore {
 		// Checks for input and sanitizes/saves if needed
 		$title                 = $this->getPostData( '_shortscore_game_title' );
 		$shortscore_userrating = $this->getPostData( '_shortscore_user_rating' );
-		$shortscore_summary = $this->getPostData( '_shortscore_summary' );
+		$shortscore_summary    = $this->getPostData( '_shortscore_summary' );
 
 
 		if ( function_exists( 'get_post_meta' ) ) {
@@ -112,7 +112,7 @@ class WpShortscore {
 				$this->savePostMeta( $post_id, '_shortscore_user_rating', $shortscore_userrating );
 			}
 
-			if ( isset($_POST['delete_shortscore']) ) {
+			if ( isset( $_POST['delete_shortscore'] ) ) {
 				delete_post_meta( $post_id, '_shortscore_result' );
 			}
 
@@ -255,7 +255,6 @@ class WpShortscore {
                 </p>';
 
 
-
 		echo $html;
 
 		echo $this->getShortscoreHTML();
@@ -364,15 +363,15 @@ class WpShortscore {
 
 		$notice = '';
 
-		if ( is_admin()  ) {
+		if ( is_admin() ) {
 
-		    $notice = '';
+			$notice       = '';
 			$notice_inner = '';
 
 			if ( $shortscore == '' OR $shortscore < 1 ) {
 
-				$notice_inner     .= '<li>' . __( 'The SHORTSCORE needs to be greater than zero.', 'wp-shortscore' ) . '</li>';
-				$shortscore = 0;
+				$notice_inner .= '<li>' . __( 'The SHORTSCORE needs to be greater than zero.', 'wp-shortscore' ) . '</li>';
+				$shortscore   = 0;
 			}
 
 			if ( $shortscore_summary == '' ) {
@@ -383,7 +382,7 @@ class WpShortscore {
 				$notice_inner .= '<li>' . __( 'Game title field is emtpy.', 'wp-shortscore' ) . '</li>';
 			}
 
-			if($notice_inner != ''){
+			if ( $notice_inner != '' ) {
 				$notice .= '<div class="shortscore-notice">';
 				$notice .= '<p><strong>' . __( 'Attention:', 'wp-shortscore' ) . '</strong></p>';
 				$notice .= '<ul>';
@@ -392,7 +391,7 @@ class WpShortscore {
 
 			}
 
-			echo '<h2>'.  __('Preview','wp-shortscore') . '</h2>';
+			echo '<h2>' . __( 'Preview', 'wp-shortscore' ) . '</h2>';
 		}
 
 
@@ -420,9 +419,9 @@ class WpShortscore {
 		$shortscore_html .= '</div>';
 
 		if ( is_admin() ) {
-			$buttons = '<div style="overflow: hidden; margin-top: 1em;">' . get_submit_button( __('Delete SHORTSCORE','wp-shortscore'), 'delete small', 'delete_shortscore') . '</div>';
+			$buttons = '<div style="overflow: hidden; margin-top: 1em;">' . get_submit_button( __( 'Delete SHORTSCORE', 'wp-shortscore' ), 'delete small', 'delete_shortscore' ) . '</div>';
 
-			$shortscore_html = '<div class="shortscore-preview">'. $shortscore_html . '</div>' .  $notice . $buttons;
+			$shortscore_html = '<div class="shortscore-preview">' . $shortscore_html . '</div>' . $notice . $buttons;
 
 		}
 

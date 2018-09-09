@@ -45,7 +45,7 @@ class WpShortscore {
 	 */
 	public function frontendInit() {
 		add_action( 'wp_print_styles', array( $this, 'enqueScripts' ) );
-		add_filter( 'the_content', array( $this, 'appendShortscore' ) );
+		add_filter( 'the_content', array( $this, 'appendShortscore' ),99 );
 	}
 
 	public function frontendAdminInit() {

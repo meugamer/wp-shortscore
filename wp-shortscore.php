@@ -152,10 +152,10 @@ class WpShortscore {
 	public function enqueScripts() {
 		if ( is_single() && get_post_meta( get_the_ID(), '_shortscore_result', true ) != '' ) {
 			wp_enqueue_style(
-				"shortscore-base", plugins_url( 'shortscore-base.css', __FILE__ ), $this->version );
+				"shortscore-base", plugins_url( 'css/shortscore-base.css', __FILE__ ), $this->version );
 
 			wp_enqueue_style(
-				"shortscore-rating", plugins_url( 'shortscore-rating.css', __FILE__ ), true, $this->version );
+				"shortscore-rating", plugins_url( 'css/shortscore-rating.css', __FILE__ ), true, $this->version );
 		}
 	}
 
@@ -165,13 +165,13 @@ class WpShortscore {
 	public function enqueAdminScripts() {
 
 		wp_enqueue_style(
-			"shortscore-base", plugins_url( 'shortscore-base.css', __FILE__ ), $this->version );
+			"shortscore-base", plugins_url( 'css/shortscore-base.css', __FILE__ ), $this->version );
 
 		wp_enqueue_style(
 			"shortscore-rangeslider", plugins_url( 'rangeslider/rangeslider.css', __FILE__ ), $this->version );
 
 		wp_enqueue_style(
-			"shortscore-rating", plugins_url( 'shortscore-rating.css', __FILE__ ), array(), $this->version );
+			"shortscore-rating", plugins_url( 'css/shortscore-rating.css', __FILE__ ), array(), $this->version );
 
 		wp_enqueue_script(
 			'shortscore-rangeslider', plugins_url( 'rangeslider/rangeslider.js', __FILE__ ), array( "jquery" ), $this->version );

@@ -3,7 +3,7 @@ Contributors: MarcDK,lephilde
 Tags: marctv, shortscore, review box, hreview
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 3.1
+Stable tag: 3.2
 
 == Description ==
 
@@ -17,10 +17,11 @@ Present your SHORTSCORES in a review box at the end of your posts.
 
 == Changelog ==
 
-= 3.0 =
+= 3.2 =
 
 * removed dependencies from SHORTSCORE.org.
 * new interface to enter your review data directly from the post.
+* new images. Background color can now be changed with css!
 
 = 2.0.5 =
 

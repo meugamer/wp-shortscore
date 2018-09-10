@@ -3,7 +3,7 @@ Contributors: MarcDK,lephilde
 Tags: marctv, shortscore, review box, hreview
 Requires at least: 3.0
 Tested up to: 4.9.8
-Stable tag: 3.3
+Stable tag: 3.4
 
 == Description ==
 

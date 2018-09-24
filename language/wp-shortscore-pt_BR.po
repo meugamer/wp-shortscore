@@ -1,0 +1,109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WP SHORTSCORE\n"
+"POT-Creation-Date: 2018-09-23 23:11-0300\n"
+"PO-Revision-Date: 2018-09-23 23:12-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.1.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: wp-shortscore.php\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: wp-shortscore.php:192
+msgid "Add SHORTSCORE"
+msgstr "Adicionar SHORTSCORE"
+
+#: wp-shortscore.php:241
+msgid "Game title"
+msgstr "Título do jogo"
+
+#: wp-shortscore.php:247
+msgid "Shortscore (1 to 10)"
+msgstr "Nota Shortscore (1 a10)"
+
+#: wp-shortscore.php:253
+msgid "Summary"
+msgstr "Resumo"
+
+#: wp-shortscore.php:303
+msgid "This SHORTSCORE ID does not exist"
+msgstr "Este ID SHORTSCORE não existe"
+
+#: wp-shortscore.php:306
+msgid "An error occurred when saving the SHORTSCORE:"
+msgstr "Ocorreu um erro ao salvar o SHORTSCORE:"
+
+#: wp-shortscore.php:321
+msgid "Valid SHORTSCORE ID found and data saved to post successfully"
+msgstr "ID SHORTSCORE válido encontrado e dados salvos com sucesso"
+
+#: wp-shortscore.php:324
+msgid "SHORTSCORE ID saved"
+msgstr "ID SHORTSCORE salvo"
+
+#: wp-shortscore.php:373
+msgid "The SHORTSCORE needs to be greater than zero."
+msgstr "O SHORTSCORE precisa ser maior que zero."
+
+#: wp-shortscore.php:378
+msgid "Summary field is empty."
+msgstr "O campo de resumo está vazio."
+
+#: wp-shortscore.php:382
+msgid "Game title field is emtpy."
+msgstr "O campo do título do jogo está vazio."
+
+#: wp-shortscore.php:387
+msgid "Attention:"
+msgstr "Atenção:"
+
+#: wp-shortscore.php:394
+msgid "Preview"
+msgstr "Visualizar"
+
+#: wp-shortscore.php:412
+#, php-format
+msgid "out of %s."
+msgstr "por %s."
+
+#: wp-shortscore.php:422
+msgid "Delete SHORTSCORE"
+msgstr "Excluir SHORTSCORE"
+
+#. Plugin Name of the plugin/theme
+msgid "WP SHORTSCORE"
+msgstr "WP SHORTSCORE"
+
+#. Plugin URI of the plugin/theme
+msgid "http://shortscore.org"
+msgstr "http://shortscore.org"
+
+#. Description of the plugin/theme
+msgid "Present your SHORTSCORES in a review box at the end of your posts."
+msgstr "Exibe uma caixa de review do SHORTSCORES final de suas postagens."
+
+#. Author of the plugin/theme
+msgid "MarcDK, lephilde"
+msgstr ""
+
+#. Author URI of the plugin/theme
+#, fuzzy
+msgid "http://marc.tv"
+msgstr "http://shortscore.org"
+
+#~ msgid "Game title is emtpy."
+#~ msgstr "Spieltitel ist leer."
+
+#~ msgid "The review score needs to be greater than zero."
+#~ msgstr "Die Bewertung  muss höher als 0 sein."
